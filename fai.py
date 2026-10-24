@@ -1,14 +1,10 @@
 import os
-from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 
-# Load .env file
-load_dotenv()
-
-# Make sure the key actually loaded
+# Get the API key directly from Render's environment variable
 api_key = os.getenv("GROQ_API_KEY")
 if not api_key:
-    raise Exception("ERROR: GROQ_API_KEY not found. Make sure your .env file is in the SAME folder as this script.")
+    raise Exception("ERROR: GROQ_API_KEY not found. Set it in Render's Environment tab.")
 
 # Create the LLM client
 llm = ChatGroq(
