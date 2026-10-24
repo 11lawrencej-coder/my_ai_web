@@ -1,4 +1,5 @@
 import os
+import markdown
 from langchain_groq import ChatGroq
 
 llm = ChatGroq(
@@ -9,5 +10,6 @@ llm = ChatGroq(
 
 def run(choice):
     response = llm.invoke(choice)
-    return response.content
-
+    md_text = response.content
+    html = markdown.markdown(md_text)
+    return html
